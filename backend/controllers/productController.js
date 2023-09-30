@@ -65,7 +65,7 @@ const createProductController = async (req, res) => {
 //get all products
 const getProductController = async (req, res) => {
   try {
-    const products = await productModel.find({}).populate({path:'brandname', model:'Brands', select:'brandname'});
+    const products = await productModel.find({}).populate('brandname').populate('category');
     res.status(200).send({
       success: true,
       counTotal: products.length,
@@ -86,10 +86,9 @@ const getProductController = async (req, res) => {
 const getSingleProductController = async (req, res) => {
   try {
     const product = await productModel
-      .findOne({ slug: req.params.slug })
-      .select("-photo")
-      .populate({path :'category', model:'Category'})
-      .populate({path:'brandname', model:'Brands'});
+      .findOne({ slug: req.params.slug }).select("-photo")
+      .populate('category')
+      .populate('brandname');
     res.status(200).send({
       success: true,
       message: "Single Product Fetched",
@@ -119,6 +118,48 @@ const productPhotoController = async (req, res) => {
       success: false,
       message: "Erorr while getting photo",
       error,
+    });
+  }
+};
+
+//get all products by Brand
+const getProductByBrand = async (req, res) => {
+  const brandname = req.params.id;
+  try {
+    const products = await productModel.find({brandname});
+    res.status(200).send({
+      success: true,
+      // counTotal: products.length,
+      message: "Product By Brand ",
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Erorr in getting products",
+      error: error.message,
+    });
+  }
+};
+
+//get all products by Category
+const getProductByCategory = async (req, res) => {
+  const category = req.params.id;
+  try {
+    const products = await productModel.find({category}).populate('category').populate('brandname');
+    res.status(200).send({
+      success: true,
+      // counTotal: products.length,
+      message: "Product By Category",
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Erorr in getting products",
+      error: error.message,
     });
   }
 };
@@ -329,4 +370,6 @@ module.exports = {
   productPhotoController,
   productFiltersController,
   getSingleProductController,
+  getProductByBrand,
+  getProductByCategory,
 };

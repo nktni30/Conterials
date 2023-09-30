@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Navigation, Scrollbar, A11y, Grid } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Link } from "react-router-dom";
 // import { Categories } from "../data/categories";
 import "swiper/css";
 import "swiper/css/free-mode";
 import axios from "axios";
+
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
@@ -43,36 +45,38 @@ const Categories = () => {
                 400: {
                   slidesPerView: 3,
                   spaceBetween: 30,
-                  
+
                 },
                 768: {
                   slidesPerView: 5,
-                  spaceBetween:30,
+                  spaceBetween: 30,
                 },
-                1024:{
+                1024: {
                   slidesPerView: 9,
                   spaceBetween: 30,
-                  
+
                 }
               }}
-              
+
               freeMode={true}
               onSwiper={(swiper) => console.log(swiper)}
               onSlideChange={() => console.log("slide change")}
             >
               {categories?.map((item) => (
                 <SwiperSlide>
-                  <div className="cat-card">
-                    <div className="categories-image">
-                      <img
-                        alt="categories"
-                        className="img-fluid"
-                        src={`/api/v1/category/category-photo/${item._id}`}
-                      />
+                  <Link to={`/products/category/${item._id}`}>
+                    <div className="cat-card">
+                      <div className="categories-image">
+                        <img
+                          alt="categories"
+                          className="img-fluid"
+                          src={`/api/v1/category/category-photo/${item._id}`}
+                        />
+                      </div>
+                      <div className="img-overlay"></div>
+                      <div className="categories-title">{item.name}</div>
                     </div>
-                    <div className="img-overlay"></div>
-                    <div className="categories-title">{item.name}</div>
-                  </div>
+                  </Link>
                 </SwiperSlide>
               ))}
             </Swiper>

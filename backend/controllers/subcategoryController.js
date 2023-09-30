@@ -81,23 +81,24 @@ const getSubCategoryControlller = async (req, res) => {
 };
 
 
-// get category by subcategory
+// get subcategory by category
 
 const getsubCatbyCategory = async (req, res) => { 
-  const category = req.params.category;
+  const category = req.params.id;
   try {
     const subcategory = await subcategoryModel.find({category});
-    if(!subcategory){
-      return res.status(404).send({
-        message:'subcategory not find'
-      })
-    }
+    res.status(200).send({
+      success: true,
+      message: "Selected subCategories List",
+      subcategory,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
       error,
       message: "Error while getting all subcategories",
+      
     });
   }
 };

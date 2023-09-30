@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import Footer from "../components/Footer";
 import { BsFunnelFill } from "react-icons/bs";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Products = () => {
-  const navigate = useNavigate()
+
   const [show, setShow] = useState(false);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -96,7 +96,7 @@ const Products = () => {
       <div className="container">
         <div className="row">
           <div className="col-6 col-lg-6 d-flex justify-content-start align-items-center">
-            <label className="label">Sort </label>
+            <label className="label">Sort</label>
             <select className="sort-products" type="select">
               <option value="Relevance">Relevance</option>
               <option value="Products">New Products</option>
@@ -169,33 +169,33 @@ const Products = () => {
                 {/* filter end */}
               </div>
               <div className="col-md-10 col-lg-10 col-sm-12 col-12">
-                <div className="row">
+                <div className="row row-cols-lg-4">
                   {products?.map((p) => (
-
-                    <div onClick={() => navigate(`/product/${p.slug}`)} className="col-md-3 col-lg-3 col-sm-12 mb-3">
-
-                      <div className="card px-md-3 py-lg-4 py-2 rounded-0 border-0">
-                        <div className="row">
-                          <div className="col-lg-12 col-5">
-                            <div className="prod-img d-flex justify-content-center align-items-center">
-                              <img
-                                className="img-fluid"
-                                src={`/api/v1/product/product-photo/${p._id}`}
-                                alt={p.name}
-                              />
+                    <Link to={`/product/${p.slug}`} className="text-decoration-none">
+                      <div className="col mb-3">
+                        <div className="card px-md-3 py-lg-4 py-2 rounded-0 border-0">
+                          <div className="row">
+                            <div className="col-lg-12 col-5">
+                              <div className="prod-img d-flex justify-content-center align-items-center">
+                                <img
+                                  className="img-fluid"
+                                  src={`/api/v1/product/product-photo/${p?._id}`}
+                                  alt={p.name}
+                                />
+                              </div>
                             </div>
-                          </div>
-                          <div className="col-7 col-lg-12 justify-content-start">
-                            <div className="product-name my-3">{p.productname}</div>
-                            <div className="offer-tag my-2 py-2 px-3">ON OFFER</div>
-                            <div className="product-details mt-3">
-                              {p.productdetails}
+                            <div className="col-7 col-lg-12 justify-content-start">
+                              <div className="product-name my-3">{p?.productname} | {p?.brandname?.brandname}</div>
+                              <div className="offer-tag my-2 py-2 px-3">ON OFFER</div>
+                              <div className="product-details mt-3">
+                                {p.productdetails}
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
 
-                    </div>
+                      </div>
+                    </Link>
                   ))}
                 </div>
               </div>

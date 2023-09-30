@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Select } from 'antd';
+// import { Select } from 'antd';
 import AdminMenu from "../components/AdminMenu";
 import toast from "react-hot-toast";
 import axios from "axios";
 // import CategoryForm from "../../components/Form/CategoryForm";
-const { Option } = Select;
+// const { Option } = Select;
 
 const CreateBrand = () => {
 
-  const [categories, setCategories] = useState([]);
+  // const [categories, setCategories] = useState([]);
   const [brands, setBrands] = useState([]);
   const [brandname, setBrandName] = useState("");
   const [photo, setPhoto] = useState("");
-  const [category, setCategory] = useState("");
+  // const [category, setCategory] = useState("");
 
   //form handle
   const handleSubmit = async (e) => {
@@ -20,7 +20,7 @@ const CreateBrand = () => {
     try {
       const brandData = new FormData();
       brandData.append("brandname", brandname);
-      brandData.append("category", category);
+      // brandData.append("category", category);
       brandData.append("photo", photo);
       const { data } = await axios.post("/api/v1/brand/create-brand",
         brandData,
@@ -51,20 +51,20 @@ const CreateBrand = () => {
   };
 
   //get all category
-  const getAllCategory = async () => {
-    try {
-      const { data } = await axios.get("/api/v1/category/get-category");
-      if (data?.success) {
-        setCategories(data?.category);
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error("Something wwent wrong in getting catgeory");
-    }
-  };
+  // const getAllCategory = async () => {
+  //   try {
+  //     const { data } = await axios.get("/api/v1/category/get-category");
+  //     if (data?.success) {
+  //       setCategories(data?.category);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     toast.error("Something wwent wrong in getting catgeory");
+  //   }
+  // };
 
   useEffect(() => {
-    getAllCategory();
+    // getAllCategory();
     getAllBrand();
   }, []);
 
@@ -91,7 +91,7 @@ const CreateBrand = () => {
                 />
               </div>
 
-              <Select
+              {/* <Select
                 bordered={false}
                 placeholder="Select a category"
                 className="form-control mb-3"
@@ -104,7 +104,7 @@ const CreateBrand = () => {
                     {c.name}
                   </Option>
                 ))}
-              </Select>
+              </Select> */}
 
               <div className="mb-3">
                 <label className="btn btn-outline-secondary col-md-12">

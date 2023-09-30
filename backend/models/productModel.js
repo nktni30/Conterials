@@ -15,19 +15,19 @@ const productSchema = new mongoose.Schema(
     },
 
     brandname: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.ObjectId,
       ref: "Brands",
       required: true,
     },
 
     category: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.ObjectId,
       ref: "Category",
       required: true,
     },
 
     subcategory: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.ObjectId,
       ref: "Subcategory",
       required: true,
     },

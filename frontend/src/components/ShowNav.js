@@ -7,17 +7,33 @@ const ShowNav = ({ children }) => {
       const location = useLocation();
       const [showNavbar, setShowNavbar] = useState(true)
       useEffect(() => {
-            console.log('this is location:', location)
+
             switch (true) {
                   case location.pathname === '/admin':
                         return (
                               setShowNavbar(false)
                         )
-                  case location.pathname === '/dashboard/admin':
+                  case location.pathname === '/dashboard/admin/category' || '/dashboard/admin/subCategory':
                         return (
                               setShowNavbar(false)
                         )
-                        default:
+                  case location.pathname === '/dashboard/admin/subCategory':
+                        return (
+                              setShowNavbar(false)
+                        )
+                  case location.pathname === '/dashboard/admin/brands':
+                        return (
+                              setShowNavbar(false)
+                        )
+                  case location.pathname === '/dashboard/admin/createProduct':
+                        return (
+                              setShowNavbar(false)
+                        )
+                  case location.pathname === '/dashboard/admin/products':
+                        return (
+                              setShowNavbar(false)
+                        )
+                  default:
             }
 
       }, [location])

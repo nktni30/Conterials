@@ -57,6 +57,25 @@ const getcategoryControlller = async (req, res) => {
   }
 };
 
+// get category by id
+const getSingleCategory = async (req, res) => {
+  const _id = req.params.id;
+  try {
+    const category = await categoryModel.findOne({_id});
+    res.status(200).send({
+      success: true,
+      message: "Single Category",
+      category,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error while getting all categories",
+    });
+  }
+};
 // const updateCategoryController = async (req, res) => {
 //   try {
 //     const { name } = req.body;
@@ -121,4 +140,5 @@ module.exports = {
   createCategoryController,
   getcategoryControlller,
   categoryPhotoController,
+  getSingleCategory,
 };

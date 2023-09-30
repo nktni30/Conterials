@@ -69,8 +69,8 @@ const Brands = () => {
                 {brands?.map((b) => (
                   <SwiperSlide>
                     <Link
-                    key={b.id}
-                    to={`/products/${b.slug}`}>
+                    key={b._id}
+                    to={`/products/brand/${b._id}`}>
                     <div className="brand-card">
                       <img alt={b.brnadname} className="brand-img border-0" src={`/api/v1/brand/brand-photo/${b._id}`} />
                     </div>

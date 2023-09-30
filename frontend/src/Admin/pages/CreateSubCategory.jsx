@@ -25,10 +25,6 @@ const CreateSubCategory = () => {
     }
   };
 
-  useEffect(() => {
-    getAllCategory();
-  }, []);
-
   //get all subcategories
 
   const getAllSubCategory = async () => {
@@ -36,7 +32,7 @@ const CreateSubCategory = () => {
       const { data } = await axios.get("/api/v1/subcategory/get-subcategory");
       if (data?.success) {
         setSubCategory(data?.subcategory);
-        console.log(data);
+        // console.log(data);
       }
     } catch (error) {
       console.log(error);
@@ -45,6 +41,7 @@ const CreateSubCategory = () => {
   };
 
   useEffect(() => {
+    getAllCategory();
     getAllSubCategory();
   }, []);
 
@@ -63,8 +60,10 @@ const CreateSubCategory = () => {
       );
       if (data?.success) {
         toast.error(data?.message);
+        getAllSubCategory();
       } else {
         toast.success(" subcategory Created Successfully");
+        
       }
     } catch (error) {
       console.log(error);
@@ -86,7 +85,6 @@ const CreateSubCategory = () => {
               <Select
                 bordered={false}
                 placeholder="Select a category"
-
                 className="form-control mb-3"
                 onChange={(value) => {
                   setCategory(value);
@@ -133,8 +131,8 @@ const CreateSubCategory = () => {
                     <tbody>
                       {subcategory?.map((b) => (
                         <>
-                          <tr>
-                            <td key={b._id}>{b.subcategoryname}</td>
+                          <tr key={b._id}>
+                            <td >{b.subcategoryname}</td>
                             <td>{b.category.name}</td>
                             <td>
                               <button className="btn btn-primary ms-2">Edit</button>

@@ -106,6 +106,7 @@ const CreateProduct = () => {
 
               <div className="m-1 w-75">
                 <Select
+                  required={true}
                   bordered={false}
                   placeholder="Select a category"
                   className="form-control mb-3"

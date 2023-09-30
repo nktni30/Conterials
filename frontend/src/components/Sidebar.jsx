@@ -78,8 +78,8 @@ function ConSidebar() {
                                     },
                               }}>
 
-                                    {categories?.map((c)=>(
-                                          <MenuItem>{c.name}</MenuItem>
+                                    {categories?.map((c, index)=>(
+                                          <MenuItem key={index}>{c.name}</MenuItem>
                                     ))}
                               
                               

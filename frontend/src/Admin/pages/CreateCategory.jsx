@@ -125,7 +125,7 @@ const CreateCategory = () => {
                         <>
                           <tr>
                             <td key={c._id}>{c.name}</td>
-                            <td><img alt={c.name} className="admin-img" src={`/api/v1/category/category-photo/${c._id}`}/></td>
+                            <td><img key={c.id} alt={c.name} className="admin-img" src={`/api/v1/category/category-photo/${c._id}`}/></td>
                             <td>
                               <button className="btn btn-sm btn-primary ms-2">Edit</button>
                             </td>

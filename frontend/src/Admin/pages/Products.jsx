@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AdminMenu from "../components/AdminMenu";
 import axios from "axios";
-import toast from "react-hot-toast";
 const Products = () => {
   const [products, setProducts] = useState([]);
 
@@ -12,7 +11,7 @@ const Products = () => {
       setProducts(data.products);
     } catch (error) {
       console.log(error);
-      toast.error("Someething Went Wrong");
+
     }
   };
 
@@ -44,6 +43,7 @@ const Products = () => {
                   <div className="card-body">
                     <h5 className="card-title">{p.productname}</h5>
                     <p className="card-text">{p.productdetails}</p>
+                    <p>{p.brandname.brandname}</p>
                   </div>
                 </div>
               </div>

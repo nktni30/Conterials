@@ -4,14 +4,12 @@ const fs = require("fs");
 
 const createBrandController = async (req, res) => {
   try {
-    const { brandname, category } = req.fields;
+    const { brandname} = req.fields;
     const { photo } = req.files;
     //alidation
     switch (true) {
       case !brandname:
         return res.status(500).send({ error: "Name is Required" });
-      case !category:
-        return res.status(500).send({ error: "Category is Required" });
       case photo && photo.size > 1000000:
         return res
           .status(500)

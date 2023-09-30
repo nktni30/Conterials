@@ -4,6 +4,8 @@ import Home from "./Pages/Home";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import Products from "./Pages/Products";
+import ByBrands from "./Pages/ByBrands";
+import ByCategory from './Pages/ByCategory';
 import SingleProduct from "./Pages/SingleProduct";
 import Sidebar from "./components/Sidebar";
 import Whatsapp from "./components/Whatsapp";
@@ -34,6 +36,9 @@ function App() {
         <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/products" element={<Products />} />
         <Route exact path="/product/:slug" element={<SingleProduct />} />
+        <Route exact path="/products/brand/:id" element={<ByBrands />} />
+        <Route exact path="/products/category/:id" element={<ByCategory />} />
+        
         <Route exact path="/storeLocator" element={<StoreLocator />} />
         <Route exact path="/termsCondition" element={<TermsCondition />} />
         <Route exact path="/privacyPolicy" element={<PrivacyPolicy />} />
