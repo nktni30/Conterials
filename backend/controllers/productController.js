@@ -164,6 +164,29 @@ const getProductByCategory = async (req, res) => {
   }
 };
 
+
+// Popular products
+
+const getPopularProduct = async (req, res) => {
+  try {
+    const products = await productModel.find({popular: 'true'}).populate('brandname').populate('category');
+    res.status(200).send({
+      success: true,
+      counTotal: products.length,
+      message: "Popular Products",
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Erorr in getting products",
+      error: error.message,
+    });
+  }
+};
+
+
 // //delete controller
 // const deleteProductController = async (req, res) => {
 //   try {
@@ -372,4 +395,5 @@ module.exports = {
   getSingleProductController,
   getProductByBrand,
   getProductByCategory,
+  getPopularProduct,
 };

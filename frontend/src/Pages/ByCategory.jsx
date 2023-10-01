@@ -38,8 +38,15 @@ const ByCategory = () => {
 
 
   useEffect(()=>{
-      getCategory()
-      getAllProductsByCategory()
+
+      getCategory();
+      // eslint-disable-next-line
+  },[])
+
+  useEffect(()=>{
+       
+      getAllProductsByCategory();
+      // eslint-disable-next-line
   },[])
 
   return (
@@ -74,13 +81,17 @@ const ByCategory = () => {
                                 <img
                                   className="img-fluid"
                                   src={`/api/v1/product/product-photo/${p?._id}`}
-                                  alt={p.name}
+                                  alt={p?.name}
                                 />
                               </div>
                             </div>
                             <div className="col-7 col-lg-12 justify-content-start">
                               <div className="product-name my-3">{p?.productname} | {p?.brandname?.brandname}</div>
-                              <div className="offer-tag my-2 py-2 px-3">ON OFFER</div>
+                              {p?.offer ? (
+                                <div className="offer-tag my-2 py-2 px-3">ON OFFER</div>
+                              ) : (
+                                ''
+                              )}
                               <div className="product-details mt-3">
                                 {p.productdetails}
                               </div>

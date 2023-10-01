@@ -36,7 +36,7 @@ const SingleProduct = () => {
         <div className='row'>
           <div className="col-md-6">
             <figure>
-              <img alt={product?.productname} src={`/api/v1/product/product-photo/${product._id}`} />
+              <img className='img-fluid' alt={product?.productname} src={`/api/v1/product/product-photo/${product._id}`} />
             </figure>
             {/* {JSON.stringify(product, null, 4)} */}
             {/* <ProdSlider prodimgs={image} /> */}
@@ -47,9 +47,19 @@ const SingleProduct = () => {
                 <h5>{product?.productname}</h5>
               </div>
               <div className='col-6 d-flex justify-content-end'>
-                Brand: <span>{product?.brandname?.brandname}</span>
-                <img alt={product} className='img-fluid' src={`/api/v1/brand/brand-photo/${product?.brandname?._id}`} />
+               
+                <img alt={product} className='single-brand-img' src={`/api/v1/brand/brand-photo/${product?.brandname?._id}`} />
               </div>
+            </div>
+            <div className="row mb-3">
+              <div className="col-sm-6">
+              {product?.offer ? (
+                                <div className="offer-tag my-2 py-2 px-3">ON OFFER</div>
+                              ) : (
+                                ''
+                              )}
+              </div>
+              <div className="col-sm-6"></div>
             </div>
             {/* <div className='row mb-2'>
               <div className='col-2 d-flex align-items-center'>
@@ -62,12 +72,12 @@ const SingleProduct = () => {
             </div> */}
             <div className='row'>
               <div className='col-6 d-flex justify-content-start'>
-                Brand: <span>{product?.category?.name}</span>
+                <h6 style={{whiteSpace: 'pre-wrap'}}>Category: </h6><span>{product?.category?.name}</span>
               </div>
             </div>
             <div className='row'>
               <div className='col'>
-                <div className='card border-0 rounded-0 p-3'>
+                <div className='bg-white border-0 rounded-0 p-3'>
                   <h6>Description</h6>
                   <p>{product?.productdetails}</p>
                 </div>

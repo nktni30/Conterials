@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { BsGeoAlt, BsSearch } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, NavLink} from "react-router-dom";
 import MainLogo from '../img/logo-main.png';
 import WhiteLogo from '../img/logo-white.png';
 import ToggleDark from '../img/toggle-icon-dark.svg';
@@ -9,27 +9,27 @@ import ToggleLight from '../img/toggle-icon-light.svg';
 import axios from "axios";
 import toast from "react-hot-toast";
 
-
 function ConSidebar() {
+      
       const [categories, setCategories] = useState([]);
       const [toggled, setToggled] = useState(false);
 
       //get all cat
-  const getAllCategory = async () => {
-      try {
-        const { data } = await axios.get("/api/v1/category/get-category");
-        if (data?.success) {
-          setCategories(data?.category);
-        }
-      } catch (error) {
-        console.log(error);
-        toast.error("Something wwent wrong in getting catgeory");
-      }
-    };
+      const getAllCategory = async () => {
+            try {
+                  const { data } = await axios.get("/api/v1/category/get-category");
+                  if (data?.success) {
+                        setCategories(data?.category);
+                  }
+            } catch (error) {
+                  console.log(error);
+                  toast.error("Something wwent wrong in getting catgeory");
+            }
+      };
 
-    useEffect(() => {
-      getAllCategory();
-    }, []);
+      useEffect(() => {
+            getAllCategory();
+      }, []);
 
 
 
@@ -78,11 +78,16 @@ function ConSidebar() {
                                     },
                               }}>
 
-                                    {categories?.map((c, index)=>(
-                                          <MenuItem key={index}>{c.name}</MenuItem>
-                                    ))}
-                              
-                              
+                              {categories?.map((c) => (
+                                    <NavLink className="text-decoration-none text-dark" to={`/products/category/${c?._id}`}>
+                                          <MenuItem className='d-block'>
+                                                {c?.name}
+                                          </MenuItem>
+                                    </NavLink>
+
+                              ))}
+
+
                         </Menu>
                         <hr></hr>
                         <Menu>
@@ -102,11 +107,11 @@ function ConSidebar() {
                               <div className="d-flex navbar-in justify-content-between align-items-center">
                                     <div className="d-flex justify-content-start">
                                           <div className="ham-menu pe-2 text-white">
-                                                <img alt="toggleicon" src={logo ? ToggleDark : ToggleLight } onClick={() => setToggled(!toggled)} />
+                                                <img alt="toggleicon" src={logo ? ToggleDark : ToggleLight} onClick={() => setToggled(!toggled)} />
                                           </div>
                                           <div className="logo">
                                                 <Link to={'/'}>
-                                                <img alt="logo" src={logo ? MainLogo : WhiteLogo} />
+                                                      <img alt="logo" src={logo ? MainLogo : WhiteLogo} />
                                                 </Link>
                                           </div>
                                     </div>

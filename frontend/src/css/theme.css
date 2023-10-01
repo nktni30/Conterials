@@ -45,6 +45,22 @@ p{
   background-color: var(--light-text);
 }
 
+.cont-btn{
+  background-color: var(--con-secondary);
+  text-decoration: none;
+  padding: 1rem 2rem;
+  transition: all .3s;
+  color: white;
+  font-weight: 500;
+}
+
+.cont-btn:hover{
+  background-color: var(--con-yellow);
+  transition: all .3s;
+  color: #252525;
+  font-weight: 500;
+}
+
 
 .banner{
   height: auto;
@@ -172,11 +188,13 @@ p{
 
 /* Brand card */
 .brand-card{
-  height: 5.5rem;
-  width:5.5rem;
+  height: 6rem;
+  width:10rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: white;
+  padding: 1.5rem;
 }
 
 .brand-img{
@@ -230,7 +248,7 @@ form textarea{
 
 /* product */
 
-.card{
+.product-card{
   height:24rem !important;
 }
 
@@ -238,7 +256,7 @@ form textarea{
   border: none;
   background-color: white;
   height: 2rem;
-  width: 30%;
+  width: auto;
   font-weight: 500;
 }
 
@@ -302,12 +320,24 @@ form textarea{
 
 /* single product */
 
+.single-brand-img{
+  height: 2rem;
+  width:auto;
+}
+
 
 /* brands product */
 
+.brand-logo-container{
+  width: 20rem;
+  height:5rem;
+ 
+}
+
 .brand-logo{
-  width: 20%;
-  padding: 1rem 0;
+  width: auto;
+  height: 100%;
+  padding: .5rem 0;
 }
 
 /* admin dashboard */

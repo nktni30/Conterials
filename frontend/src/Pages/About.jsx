@@ -54,7 +54,7 @@ const About = () => {
               <div className='card-body'>
                 <div className='about-icons'>
                   <span>
-                    <BsPatchCheckFill />
+                    <BsPatchCheckFill/>
                   </span>
                 </div>
                 <div className='h6 about-card-title mb-3'>

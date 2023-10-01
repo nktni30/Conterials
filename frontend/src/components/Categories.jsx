@@ -44,7 +44,12 @@ const Categories = () => {
               breakpoints={{
                 400: {
                   slidesPerView: 3,
-                  spaceBetween: 30,
+                  spaceBetween: 40,
+
+                },
+                500: {
+                  slidesPerView: 3,
+                  spaceBetween: 40,
 
                 },
                 768: {

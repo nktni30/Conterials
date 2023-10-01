@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Footer from "../components/Footer";
-import { BsFunnelFill } from "react-icons/bs";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Products = () => {
 
-  const [show, setShow] = useState(false);
+
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [brands, setBrands] = useState([]);
@@ -93,36 +92,41 @@ const Products = () => {
           Our Products
         </h2>
       </div>
-      <div className="container">
-        <div className="row">
-          <div className="col-6 col-lg-6 d-flex justify-content-start align-items-center">
-            <label className="label">Sort</label>
-            <select className="sort-products" type="select">
-              <option value="Relevance">Relevance</option>
-              <option value="Products">New Products</option>
-              <option value="Old Products">Old Products</option>
-            </select>
-          </div>
-          <div className="col-6 col-lg-6 d-flex justify-content-end align-items-center my-5">
-            <label className="label">Filter </label>
-            <span className="">
-              <BsFunnelFill onClick={() => setShow(!show)} />
-            </span>
-          </div>
 
-          {/* products alll */}
-
-          <div className="row"></div>
-        </div>
-      </div>
-      <div className="container-fluid px-md-5 px-0 px-lg-5">
+      <div className="container-fluid px-md-5 px-0 px-lg-5 my-5">
         <div className="row mx-0 mx-md-5 mx-lg-5">
           <div className="col-md-12">
+            <div className="row">
+              <div className="col-md-2">
+                
+              </div>
+              <div className="col-md-10">
+                <div className="row d-flex justify-content-end">
+                  <div className="col-8"></div>
+                  <div className="col-4 d-flex justify-content-end">
+                    <div className="d-flex justify-content-between align-items-center">
+                    <label style={{whiteSpace: 'pre-wrap'}}>Sort: </label>
+                    <select className="sort-products" type="select">
+                      <option value="Relevance">Relevance</option>
+                      <option value="Products">New Products</option>
+                      <option value="Old Products">Old Products</option>
+                    </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="row">
               <div className="col-md-2 col-sm-12 col-lg-2">
                 {/* prodyct filter */}
                 <div className='product-filter'>
                   <div className='filter-body'>
+                  <div className="row">
+                  <div className="col"><h5>FILTERS</h5></div>
+                  <div className="col d-flex justify-content-end"><button className="btn btn-sm btn-primary">Reset</button></div>
+
+                </div>
+                    <hr />
                     <div className='row'>
                       <h6 className=''>Categories</h6>
                       <div className='row-cols-auto'>
@@ -168,12 +172,13 @@ const Products = () => {
 
                 {/* filter end */}
               </div>
-              <div className="col-md-10 col-lg-10 col-sm-12 col-12">
+              <div className="col-md-10 col-lg-10 col-sm-12 col-12 mt-3">
                 <div className="row row-cols-lg-4">
                   {products?.map((p) => (
+
                     <Link to={`/product/${p.slug}`} className="text-decoration-none">
                       <div className="col mb-3">
-                        <div className="card px-md-3 py-lg-4 py-2 rounded-0 border-0">
+                        <div className="card product-card px-md-3 py-lg-4 py-2 rounded-0 border-0">
                           <div className="row">
                             <div className="col-lg-12 col-5">
                               <div className="prod-img d-flex justify-content-center align-items-center">
@@ -186,7 +191,11 @@ const Products = () => {
                             </div>
                             <div className="col-7 col-lg-12 justify-content-start">
                               <div className="product-name my-3">{p?.productname} | {p?.brandname?.brandname}</div>
-                              <div className="offer-tag my-2 py-2 px-3">ON OFFER</div>
+                              {p?.offer ? (
+                                <div className="offer-tag my-2 py-2 px-3">ON OFFER</div>
+                              ) : (
+                                ''
+                              )}
                               <div className="product-details mt-3">
                                 {p.productdetails}
                               </div>
